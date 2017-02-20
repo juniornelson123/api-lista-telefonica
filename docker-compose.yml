@@ -1,0 +1,63 @@
+db-api:
+  image: postgres
+  container_name: db-api
+  volumes:
+    - '.:/var/app'
+
+web-api:
+  build: .
+  container_name: web-api
+  command: rails s -b 0.0.0.0 #-e production
+  ports:
+    - 3000:3000
+  links:
+    - db-api
+  privileged: true
+  tty: true
+  stdin_open: true
+  environment:
+    ELASTICSEARCH_URL: http://es:9200/
+    REDIS_URL: redis://redis:6379/
+    FACEBOOK_APP_ID: 194106034077503
+    FACEBOOK_APP_SECRET: 7aa219824d8cdcd36ce95852aa243f5d
+    PASSWORD_MAIL: 02569ef1ecf77de133f26ba7bd325f63cd8cf8a0
+    RAILS_ENV: development
+    # RAILS_ENV: production
+    # SECRET_KEY_BASE: 9cc187d35cb4da14722da95131fd58d9db-apif0031b5b329c239a4d632d5a0e45ac01d7d848554c7943ac185f7144f1e7923d74c8bfcea76d6d88f858919a51a2e4
+    # RAILS_SERVE_STATIC_FILES: 'true'
+    # RAILS_COMPILE_ASSETS: 'true'
+
+    # ECT_CNPJ: 21075446000155
+    # ECT_USER: pedro.fausto@hotmail.com
+    # ECT_PASSWORD: an8bw4
+    # ECT_ADMINISTRATIVE_CODE: 16332113
+    # ECT_CONTRACT: 9912406220
+    # ECT_CODE_SERVICE: ''
+    # ECT_CARD: 0072796901
+    # ECT_ENVIRONMENT: production
+
+    ECT_CNPJ: 34028316000103
+    ECT_USER: sigep
+    ECT_PASSWORD: n5f9t8
+    ECT_ADMINISTRATIVE_CODE: 08082650
+    ECT_CONTRACT: 9912208555
+    ECT_CODE_SERVICE: ''
+    ECT_CARD: '0057018901'
+    ECT_ENVIRONMENT: 'development'
+
+    MOIP_TOKEN: YJNG2JJ7EF9D04DOMTGE8T6ZC2TCZACD
+    MOIP_SECRET: L4BH67OEOPX8L8KKH9HTTSWMCFZH5H2BYS18FOUK
+    APP_ID: APP-IYDQO7981OKQ
+    APP_ACCESS_TOKEN: 96236c8ce7944d80a98cf64ea7f3f2e5_v2
+    APP_SECRET: 071f4f6be2ca47e0bdc4f7d9242273f2
+    APP_REDIRECT_URL: http://sandbox.ruaalecrim.com.br/auth/moip
+    APP_ENVIRONMENT: development
+    MOIP_CALLBACK_URL: https://connect-sandbox.moip.com.br
+
+    # CLOUDINARY_API_KEY:      759919375534118
+    # CLOUDINARY_API_SECRET:   RwCVb_ArNS7_to6qm8dMcqsp89E
+    # CLOUDINARY_CLOUD_NAME:   ddr8gn363
+  volumes:
+    - '.:/var/app'
+    - .bundle:/usr/share/bundle
+
