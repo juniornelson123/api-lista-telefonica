@@ -24,10 +24,13 @@ class ContatosController < ApplicationController
   # POST /contatos
   # POST /contatos.json
   def create
-    @contato = Contato.new(contato_params)
 
+    @contato = Contato.new()
+    @contato.nome = params[:contato][:nome]
+    @contato.telefone = params[:contato][:telefone]
+    @contato.operadora_id = params[:contato][:operadora_id]
     respond_to do |format|
-      if @contato.save
+      if @contato.save!
         format.html { redirect_to @contato, notice: 'Contato was successfully created.' }
         format.json { render :show, status: :created, location: @contato }
       else
@@ -69,6 +72,6 @@ class ContatosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def contato_params
-      params.require(:contato).permit(:nome, :telefone, :date, :operadora_id)
+      params.require(:contato).permit!
     end
 end
