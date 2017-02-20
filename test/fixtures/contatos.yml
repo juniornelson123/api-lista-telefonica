@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nome: MyString
+  telefone: MyString
+  date: 2017-02-19 23:20:48
+  operadora: one
+
+two:
+  nome: MyString
+  telefone: MyString
+  date: 2017-02-19 23:20:48
+  operadora: two
